@@ -51,7 +51,6 @@ collected_at = []
 #Collect Stories by ID's extracted and store them in a DataFrame.
 
 for id in storyids:
-
     try:
         url_storydetails = f"https://hacker-news.firebaseio.com/v0/item/{id}.json"
         response= req.get(url_storydetails, headers=headers)
@@ -101,7 +100,10 @@ df = pd.DataFrame({
 
 #Saving Collected story details to JSON file.
 
-fileJson =  f'{Path.cwd()}\data\\trends_{datetime.now().strftime("%Y%m%d")}.json'
+datafolderpath = Path(f"{Path(__file__).resolve().parent.parent}\data")
+datafolderpath.mkdir(exist_ok=True)
+
+fileJson =  f'{datafolderpath}\\trends_{datetime.now().strftime("%Y%m%d")}.json'
 df.to_json(fileJson)
 
 print(f"Collected {len(df)} stories and saved to file: {fileJson}")
