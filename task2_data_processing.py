@@ -3,11 +3,11 @@ import pandas as pd
 import json
 from datetime import datetime
 import time
-import pathlib
+from pathlib import Path
 
 #Load Imported data from Hacker news into Dataframe
 
-fileJson= "D:\\Sai\\AI and ML\\Mini Project - 1\\data\\trends_20260413.json"
+fileJson= f'{Path(__file__).resolve().parent.parent}\data\\trends_{datetime.now().strftime("%Y%m%d")}.json'
 
 df = pd.read_json(fileJson)
 
